@@ -7,14 +7,14 @@
 <meta name="description" content="StyleShift is a free Chrome extension that lets you customize fonts and CSS on any website. Pick a bundled font or upload your own, apply it per site or globally. 100% offline, no tracking." />
 <link rel="canonical" href="https://amirmeimari.github.io/styleshift/" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="theme-color" content="#f3e9d2" />
+<meta name="theme-color" content="#e8dcc4" />
 <meta name="author" content="Amir Meimari" />
 <meta name="application-name" content="StyleShift" />
 <link rel="icon" type="image/png" href="assets/icon.png" />
 <link rel="apple-touch-icon" href="assets/icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
 
 <meta property="og:title" content="StyleShift – Custom Fonts &amp; CSS Chrome Extension" />
 <meta property="og:description" content="Pick a bundled font or upload your own — apply it globally or per site. Fully offline, no data ever leaves your device." />
@@ -54,19 +54,50 @@
 
 <style>
   :root {
-    --cream: #f3e9d2;
-    --cream-deep: #e8d9b8;
-    --paper: #fbf5e8;
-    --ink: #3a2f22;
+    /* Palette lifted from the StyleShift extension's own "fabric" design
+       tokens (tailwind.config.ts / src/index.css) rather than invented. */
+    --canvas: #e8dcc4;
+    --canvas-deep: #d9c9ae;
+    --linen: #e5d7bd;
+    --paper: #f8f1e4;
+    --ink: #332419;
     --ink-soft: #6b5c47;
-    --navy: #2c4972;
-    --navy-deep: #1f3554;
-    --rust: #c1603f;
-    --rust-deep: #a84e30;
-    --gold: #c79a3a;
-    --border: #d8c49a;
-    --radius: 14px;
-    --shadow: 0 10px 30px rgba(58, 47, 34, 0.12);
+    --muted: #83705f;
+
+    --denim: #2d4263;
+    --denim-light: #4f6588;
+    --denim-deep: #1d2f4a;
+
+    --terracotta: #b66e5a;
+    --terracotta-border: #8f4b3c;
+
+    --mustard: #d4a74e;
+    --mustard-border: #a87f2f;
+
+    --olive: #7a7d52;
+    --olive-border: #5d6040;
+
+    --leather: #7a5538;
+
+    --stitch: #a38362;
+    --border: #b79c7c;
+
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 18px;
+
+    --shadow: 0 3px 6px rgba(68, 42, 22, 0.08), 0 8px 24px rgba(68, 42, 22, 0.12);
+    --shadow-raised: 0 8px 16px rgba(68, 42, 22, 0.14), 0 16px 40px rgba(68, 42, 22, 0.18);
+    --shadow-pressed: inset 0 2px 4px rgba(0, 0, 0, 0.18);
+    --shadow-button: 0 2px 4px rgba(68, 42, 22, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    --weave: repeating-linear-gradient(
+      45deg,
+      rgba(122, 85, 56, 0.05) 0px,
+      rgba(122, 85, 56, 0.05) 1px,
+      transparent 1px,
+      transparent 6px
+    );
   }
 
   * { box-sizing: border-box; }
@@ -75,9 +106,9 @@
 
   body {
     margin: 0;
-    background: var(--cream);
+    background: var(--canvas);
     color: var(--ink);
-    font-family: "Nunito", -apple-system, "Segoe UI", Arial, sans-serif;
+    font-family: "Nunito Sans", "Nunito", -apple-system, "Segoe UI", Arial, sans-serif;
     font-size: 1.15rem;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -85,9 +116,9 @@
   }
 
   h1, h2, h3 {
-    font-family: "Nunito", -apple-system, "Segoe UI", Arial, sans-serif;
-    font-weight: 700;
-    color: var(--navy-deep);
+    font-family: "Nunito Sans", "Nunito", -apple-system, "Segoe UI", Arial, sans-serif;
+    font-weight: 800;
+    color: var(--denim);
     margin: 0;
   }
 
@@ -101,11 +132,11 @@
     padding: 0 24px;
   }
 
-  /* Stitched divider */
+  /* Stitched divider — echoes the dashed thread line under the wordmark */
   .stitch {
     height: 3px;
     width: 100%;
-    background-image: linear-gradient(90deg, var(--gold) 60%, transparent 40%);
+    background-image: linear-gradient(90deg, var(--mustard) 60%, transparent 40%);
     background-size: 16px 3px;
     background-repeat: repeat-x;
     opacity: 0.8;
@@ -117,7 +148,7 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(243, 233, 210, 0.9);
+    background: rgba(232, 220, 196, 0.9);
     backdrop-filter: saturate(150%) blur(6px);
     border-bottom: 1px solid var(--border);
   }
@@ -142,18 +173,18 @@
   .brand img { width: 34px; height: 34px; border-radius: 8px; }
 
   .brand-name {
-    font-family: "Nunito", -apple-system, "Segoe UI", Arial, sans-serif;
+    font-family: "Nunito Sans", "Nunito", -apple-system, "Segoe UI", Arial, sans-serif;
     font-weight: 800;
     font-size: 1.4rem;
-    color: var(--navy-deep);
+    color: var(--denim);
   }
-  .brand-name em { color: var(--rust); font-style: normal; }
+  .brand-name em { color: var(--terracotta); font-style: normal; }
 
   nav.links {
     display: none;
     gap: 28px;
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   nav.links a {
@@ -161,42 +192,50 @@
     color: var(--ink-soft);
     transition: color 0.15s ease;
   }
-  nav.links a:hover { color: var(--rust); }
+  nav.links a:hover { color: var(--terracotta); }
 
   @media (min-width: 720px) {
     nav.links { display: flex; }
   }
 
-  /* Buttons */
+  /* Buttons — modeled on the extension's own Button component: rounded-lg
+     (not a pill), a border matching the fill color, and a physical
+     lift-on-hover / press-in-on-click feel instead of a flat hover state. */
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 12px 22px;
-    border-radius: 999px;
-    font-weight: 600;
+    border-radius: var(--radius);
+    font-weight: 700;
     font-size: 0.95rem;
     text-decoration: none;
     border: 1px solid transparent;
     transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     cursor: pointer;
     white-space: nowrap;
+    box-shadow: var(--shadow-button);
   }
-  .btn:hover { transform: translateY(-1px); }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-raised); }
+  .btn:active { transform: translateY(0); box-shadow: var(--shadow-pressed); }
 
   .btn-primary {
-    background: var(--rust);
+    background: var(--terracotta);
+    border-color: var(--terracotta-border);
     color: var(--paper);
-    box-shadow: 0 6px 18px rgba(161, 74, 42, 0.35);
   }
-  .btn-primary:hover { background: var(--rust-deep); }
+  .btn-primary:hover { background: #c17c67; }
 
   .btn-secondary {
-    background: transparent;
-    color: var(--navy-deep);
-    border-color: var(--navy-deep);
+    background: var(--canvas);
+    color: var(--denim);
+    border: 1.5px dashed var(--stitch);
+    box-shadow: none;
   }
-  .btn-secondary:hover { background: var(--navy-deep); color: var(--paper); }
+  .btn-secondary:hover {
+    background: var(--linen);
+    box-shadow: none;
+  }
 
   .btn-small { padding: 9px 16px; font-size: 0.85rem; }
 
@@ -225,15 +264,15 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    color: var(--ink-soft);
+    background: var(--linen);
+    border: 1.5px dashed var(--stitch);
+    color: var(--leather);
     font-size: 0.82rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     padding: 6px 14px;
-    border-radius: 999px;
+    border-radius: var(--radius-sm);
     margin-bottom: 20px;
   }
 
@@ -245,8 +284,8 @@
 
   .hero h1 em {
     font-style: italic;
-    color: var(--rust);
-    font-weight: 500;
+    color: var(--terracotta);
+    font-weight: 700;
   }
 
   .hero p.lede {
@@ -271,8 +310,8 @@
   }
 
   .hero-shot {
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-raised);
     border: 1px solid var(--border);
     overflow: hidden;
   }
@@ -318,21 +357,36 @@
   }
 
   .card {
-    background: var(--paper);
+    position: relative;
+    background: var(--canvas-deep);
+    background-image: var(--weave);
     border: 1px solid var(--border);
     border-radius: var(--radius);
+    box-shadow: var(--shadow);
     padding: 26px;
   }
 
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1.3px dashed var(--stitch);
+    border-radius: calc(var(--radius) - 4px);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
   .card .icon {
+    position: relative;
     font-size: 1.6rem;
     width: 48px;
     height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--cream-deep);
-    border-radius: 12px;
+    background: var(--linen);
+    border: 1.3px dashed var(--stitch);
+    border-radius: var(--radius);
     margin-bottom: 16px;
   }
 
@@ -349,7 +403,7 @@
 
   /* Privacy band */
   .privacy-band {
-    background: var(--navy-deep);
+    background: var(--denim-deep);
     color: #ece3cc;
   }
 
@@ -372,12 +426,12 @@
   .privacy-band p { color: #c9bd9d; }
 
   .privacy-band .btn-secondary {
+    background: transparent;
     color: #fbf5e8;
-    border-color: #6d7f9c;
+    border: 1.5px dashed #6d7f9c;
   }
   .privacy-band .btn-secondary:hover {
-    background: #fbf5e8;
-    color: var(--navy-deep);
+    background: rgba(251, 245, 232, 0.08);
   }
 
   .privacy-list {
@@ -394,16 +448,31 @@
     align-items: flex-start;
     font-size: 0.98rem;
     min-width: 0;
+    padding-bottom: 14px;
+    border-bottom: 1.3px dashed rgba(236, 227, 204, 0.22);
+  }
+
+  .privacy-list li:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
   }
 
   .privacy-list li span {
     min-width: 0;
   }
 
-
   .privacy-list li::before {
     content: "✓";
-    color: var(--gold);
+    color: var(--olive);
+    background: rgba(122, 125, 82, 0.18);
+    border: 1px solid var(--olive-border);
+    border-radius: 999px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
     font-weight: 700;
     flex-shrink: 0;
   }
@@ -442,7 +511,7 @@
   }
 
   .footer-links a { text-decoration: none; }
-  .footer-links a:hover { color: var(--rust); }
+  .footer-links a:hover { color: var(--terracotta); }
 
   .visually-hidden {
     position: absolute;
@@ -461,12 +530,12 @@
     clip: auto;
     overflow: visible;
     z-index: 100;
-    background: var(--navy-deep);
+    background: var(--denim-deep);
     color: var(--paper);
     padding: 10px 18px;
     border-radius: 8px;
-    font-family: "Nunito", -apple-system, "Segoe UI", Arial, sans-serif;
-    font-weight: 600;
+    font-family: "Nunito Sans", "Nunito", -apple-system, "Segoe UI", Arial, sans-serif;
+    font-weight: 700;
     text-decoration: none;
   }
 </style>
