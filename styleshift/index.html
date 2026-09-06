@@ -477,6 +477,58 @@
     flex-shrink: 0;
   }
 
+  /* Changelog */
+  .changelog {
+    display: grid;
+    gap: 20px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .changelog .entry {
+    background: var(--canvas-deep);
+    background-image: var(--weave);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px 26px;
+  }
+
+  .changelog .entry-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .changelog .version {
+    font-family: "Nunito Sans", "Nunito", -apple-system, "Segoe UI", Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--denim);
+  }
+
+  .changelog .badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--leather);
+    background: var(--linen);
+    border: 1.3px dashed var(--stitch);
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+  }
+
+  .changelog ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    display: grid;
+    gap: 6px;
+  }
+
   /* Install CTA */
   .cta {
     text-align: center;
@@ -553,6 +605,7 @@
     <nav class="links" aria-label="Primary">
       <a href="#features">Features</a>
       <a href="#privacy">Privacy</a>
+      <a href="#changelog">Changelog</a>
       <a href="https://github.com/amirmeimari/styleshift">GitHub</a>
     </nav>
     <a class="btn btn-primary btn-small nav-cta" href="https://chromewebstore.google.com/detail/styleshift/mcaoegkknaepofhmlljnemngbkemmkea">Add to Chrome</a>
@@ -644,6 +697,50 @@
         <li><span>Settings are stored with <code>chrome.storage.local</code>, keyed only by hostname.</span></li>
         <li><span>Open source under the MIT license — read every line yourself.</span></li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section" id="changelog">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Changelog</h2>
+        <p>What's new in StyleShift, release by release.</p>
+      </div>
+      <div class="changelog">
+        <div class="entry">
+          <div class="entry-head">
+            <span class="version">1.2.0</span>
+            <span class="badge">Latest</span>
+          </div>
+          <ul>
+            <li>Dark mode: follows the OS by default, with a Light/Dark/System override in Settings.</li>
+            <li>Typography controls: line height, letter spacing, font weight, and a minimum font size.</li>
+            <li>Per-site settings now inherit across subdomains, with an opt-out per site.</li>
+            <li>Settings export/import and a site manager, on a new options page.</li>
+            <li>Preset icons are now bundled with the extension (no more CDN request).</li>
+            <li>Global CSS (applies everywhere) and a keyboard shortcut to toggle fonts.</li>
+            <li>CSS editor uses the bundled JetBrains Mono font.</li>
+            <li>Various bug fixes: stale-tab CSS injection, subdomain/main-domain edge cases.</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="version">1.1.0</span>
+          </div>
+          <ul>
+            <li>Replaced the plain textarea with a CodeMirror-based CSS editor.</li>
+            <li>Dropped the Google Fonts API dependency.</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="version">1.0.0</span>
+          </div>
+          <ul>
+            <li>Initial release: per-site font override and custom CSS, bundled + Google fonts, 5-locale UI (with RTL support), auto-enable for all sites, and the Fabric UI design.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
