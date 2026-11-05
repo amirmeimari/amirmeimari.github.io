@@ -153,7 +153,6 @@ summary:focus-visible {
 }
 .blue {
   color: var(--primary);
-  margin-left: 0.1em;
 }
 .dark-only {
   display: none;
@@ -276,8 +275,8 @@ summary:focus-visible {
 }
 .hero {
   display: grid;
-  grid-template-columns: 1.12fr 1fr;
-  gap: 70px;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
+  gap: 36px;
   align-items: center;
   padding-block: 64px 46px;
 }
@@ -296,14 +295,15 @@ summary:focus-visible {
   background: var(--primary);
 }
 h1 {
-  font-size: clamp(64px, 6.45vw, 88px);
-  line-height: 1.02;
+  font-size: clamp(60px, 5.15vw, 74px);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
 }
 .lede {
   font-size: 16px;
   line-height: 1.75;
   color: var(--muted);
-  max-width: 440px;
+  max-width: 510px;
   margin-top: 28px;
 }
 .hero-actions {
@@ -331,7 +331,7 @@ h1 {
   margin: 0;
   max-width: 490px;
   width: 100%;
-  justify-self: end;
+  justify-self: start;
 }
 .product-stage {
   background: var(--stage);
