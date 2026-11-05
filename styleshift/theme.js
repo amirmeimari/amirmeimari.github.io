@@ -13,7 +13,9 @@
     document.documentElement.dataset.theme = preference;
     const favicon = document.getElementById("favicon");
     if (favicon)
-      favicon.href = `assets/brand-${dark ? "dark-mode" : "dark"}.png`;
+      favicon.href = dark
+        ? "assets/brand-light.png"
+        : "assets/brand-dark.png?v=2";
     document.querySelector('meta[name="theme-color"]').content = dark
       ? "#18191d"
       : "#fafaf8";

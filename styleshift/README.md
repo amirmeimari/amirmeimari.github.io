@@ -22,8 +22,8 @@ Reference checkout: `/Users/a.kalatehmeimari/Code/styleshift` (read-only during 
 
 ## Assets
 
-- `assets/brand-dark.png`: original orange-on-charcoal artwork retained for the light website theme. `assets/brand-dark-mode.png`: the updated charcoal tile with a white S and orange accent, copied unchanged from the extension’s `public/icons/dark/icon128.png`, used for the dark website theme and its favicon. `assets/brand-light.png` is retained as the previous dark-theme artwork.
-- `assets/ui/fonts-light.png` / `fonts-dark.png`: unchanged 420×600 captures from `docs/redesign/evidence/preview-rtl/after-en-light.png` / `after-en-dark.png`. These are actual implemented UI shown with development Chrome API mocks, not installed-extension QA. The visible caption identifies the development preview.
+- `assets/brand-dark.png` / `brand-light.png`: approved extension artwork copied unchanged from `public/icons/dark/icon128.png` / `light/icon128.png`. Dark artwork is used on light backgrounds, light artwork on dark backgrounds. The dark artwork is the refreshed charcoal tile with a white S and orange accent, replacing the original orange S.
+- `assets/ui/fonts-light.png` / `fonts-dark.png`: unchanged 420×600 captures from `docs/store/v2.0.0/captures/fonts-light.png` / `docs/redesign/evidence/preview-rtl/after-en-dark.png`. The light capture includes the refreshed dark artwork. These are actual implemented UI shown with development Chrome API mocks, not installed-extension QA. The visible caption identifies the development preview.
 - The language specimen and CSS/typography examples are website illustrations, not extension screenshots. The specimen follows one Inter → Vazirmatn → system fallback stack for every language.
 - Fonts copied unchanged from the extension: Inter 400/700, Vazirmatn 400, JetBrains Mono 400. License files sit alongside them. Official Inter and Vazirmatn license texts were retrieved from their upstream repositories; JetBrains Mono's license was bundled with the extension.
 - The prior `assets/hero.jpg`, `icon.png` and `logo.png` are retained to preserve existing assets and inbound references. The redesigned page does not use them.
