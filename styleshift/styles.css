@@ -777,7 +777,7 @@ kbd {
   font-size: 22px;
   letter-spacing: -0.04em;
 }
-.upcoming-badge {
+.current-badge {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--accent-fg);

@@ -10,7 +10,7 @@ Visit http://127.0.0.1:8086/styleshift/. No install or build is required. All we
 
 ## Product and release sources
 
-The website reflects the extension's implemented 2.0 interface, with the upcoming release clearly distinguished from published 1.2.0. Before announcing a release, confirm publication in the Chrome Web Store and update the hero status, install notes, structured data, and changelog together. No release dates are inferred.
+The website presents published version 2.0.0. The live Chrome Web Store listing was verified on 2026-11-06: version 2.0.0, updated November 6, 2026. The hero status, install notes, structured data, and changelog are updated together. The interface images remain development captures, as their caption states. For future releases, verify the live listing before updating all release labels together.
 
 Reference checkout: `/Users/a.kalatehmeimari/Code/styleshift` (read-only during this website task).
 
